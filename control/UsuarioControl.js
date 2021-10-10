@@ -3,18 +3,17 @@ const fs = require('fs');
 const path = require('path');
 const configMensaje = require('../configMensaje')
 function NuevoUsuario(req,res){
-    var usuario = new Usuario();
-    var parametros = req.body;
+    let usuario = new Usuario();
+    let parametros = req.body;
     usuario.imagen = parametros.imagen;
     usuario.nombre = parametros.nombre;
     usuario.apellido = parametros.apellido;
     usuario.correo = parametros.correo;
     usuario.contrasena = parametros.contrasena;
     usuario.rol = parametros.rol;
-    usuario.compras = parametros.compras;
     usuario.direccion = parametros.direccion;
     usuario.telefono = parametros.celular;
-    usuario.subscripcion = parametros.subscripcion;
+    usuario.medicamentos = parametros.medicamentos;
     usuario.estado = parametros.estado;
     if(usuario.correo != '' || usuario.contrasena != ''){
             Usuario.findOne({correo : usuario.correo}, (err, usuarioNuevo)=>{
@@ -62,7 +61,7 @@ function Ingresar(req,res){
                 res.status(200).send({
                     message : "Ingreso",
                     usuario : buscarUsuario
-                })
+                });
             }
         }
     })
@@ -84,12 +83,9 @@ function ModificarDatos(req,res){
                             usuario : actualizacion
                         })
                     })
-                   
                 }
             }
         })
-       
-  
 }
 
 function subirFoto(req,res){
@@ -139,29 +135,9 @@ function mostrarArchivo(req, res) {
     })
 }
 
-function buscarUsuario(req,res){
-    correoUsuario = req.body.correo;
-    console.log(correoUsuario);
-    Usuario.findOne({correo : correoUsuario},(err, buscarUsuario)=>{
-        if(err){
-            res.status(500).send({message : "Error en el servidor"})
-        } else {
-            if(!buscarUsuario){
-                res.status(200).send({message : "No tenemos registrado a ningún usuario con ese correo"})
-            } else if(buscarUsuario){
-                res.status(200).send({
-                    message : "Se encontró un usuario con ese correo",
-                    usuario  : buscarUsuario
-                })
-            }
-        }
-    })
-
-}
-
 function formulario(req,res){
     configMensaje(req.body);
-    res.status(200).send();
+    res.status(200).send({message:'message deliver'});
 }
 
 

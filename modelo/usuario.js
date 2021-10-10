@@ -7,11 +7,10 @@ var UsuarioSchema = new Schema({
     correo : String,
     contrasena : String,
     rol : String,
-    compras : Array,
     direccion : String,
-    celular : Number,
-    suscripcion : Date,    
+    celular : String, 
+    medicamentos : Array, 
     estado : Boolean
 });
 
-module.exports = mongoose.model('Usuario', UsuarioSchema);
+module.exports = mongoose.model('usuario', UsuarioSchema);

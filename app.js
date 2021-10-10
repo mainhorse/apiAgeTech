@@ -11,7 +11,6 @@ const configMensaje = require('./configMensaje');
 const cors = require('cors');
 
 const usuarioRutas = require('./rutas/UsuarioRutas');
-const peliculasRutas = require('./rutas/PeliculasRutas');
 //const { Server } = require('http');
 
 
@@ -20,8 +19,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api',usuarioRutas);
-app.use('/api',peliculasRutas);
-
 //const misMensajes = [];
 /*
 io.on('connection', function(socket){
